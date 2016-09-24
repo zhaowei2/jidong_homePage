@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>京东-个人注册</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link charset="utf-8" rel="stylesheet" href="css/regist.css">
+    <style>
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+        .header {
+            color: white;
+        }
+        .form {
+            border: 1px solid #777777;
+            border-radius: 4px;
+            padding-top: 20px;
+            padding-right: 30px;
+            margin-right: 20%;
+            margin-left: 20%;
+            background-color: rgba(255,255,255,0.7);
+        }
+        .control-error {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            margin-bottom: 0;
+            text-align: left;
+            background-color: #d9534f;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+        .control-success {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            margin-bottom: 0;
+            text-align: left;
+            background-color: #5cb85c;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+        .control-default {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            margin-bottom: 0;
+            text-align: left;
+            background-color: #777;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+        .show {
+            display: block;
+        }
+        .hide {
+            display: none;
+        }
+        .video-frame {
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+<!-- SDK 登录 -->
+<div class="w">
+    <div id="logo">
+        <a href="javascript:return false;" class="logo">
+            <img src="images/logo-201305-b.png" alt="京东" width="170" height="60">
+        </a>
+        <div class="logo-title">欢 迎 注 册</div>
+    </div>
+</div>
+<div class="video-frame container" poster="videos/home-hero-video-desktop-still.jpg">
+    <video class="center-block" autoplay loop src="video/SnowBoarding_shutterstockRF_1178125_1080_HD_ZH-CN.mp4"></video>
+</div>
+<div class="content container">
+    <form class="form form-horizontal" action="#">
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="username">用户名:</label>
+            <div class="col-md-5">
+                <input id="username" type="text" class="form-control" autofocus placeholder="请输入用户名" required pattern="^[a-zA-Z0-9]{8,16}$">
+            </div>
+            <label id="usernameTip" class="col-md-5 hide control-default">请输入8至16位的英文或数字.</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="password">密码:</label>
+            <div class="col-md-5">
+                <input id="password" type="password" class="form-control" placeholder="请输入密码" required pattern="^[0-9]{6,12}$">
+            </div>
+            <label id="passwordTip" class="col-md-5 hide control-default">请输入6至12位的数字.</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="email">电子邮件:</label>
+            <div class="col-md-5">
+                <input id="email" type="email" class="form-control" placeholder="请输入电子邮件" required>
+            </div>
+            <label id="emailTip" class="col-md-5 hide control-default">请输入你的电子邮件地址.</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="home">个人主页:</label>
+            <div class="col-md-5">
+                <input id="home" type="url" class="form-control" placeholder="请输入个人主页">
+            </div>
+            <label id="homeTip" class="col-md-5 hide control-default">请输入你的个人主页(该项可忽略).</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="age">年龄:</label>
+            <div class="col-md-5">
+                <input id="age" type="number" class="form-control" placeholder="请输入年龄" required min="18" max="50" step="1">
+            </div>
+            <label id="ageTip" class="col-md-5 hide control-default">请输入你的年龄.</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="birth">出生日期:</label>
+            <div class="col-md-5">
+                <input id="birth" type="date" class="form-control" placeholder="请输入出生日期">
+            </div>
+            <label id="birthTip" class="col-md-5 hide control-default">请选择你的出生日期.</label>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5 col-md-push-2">
+                <input type="submit" value="注册" class="btn btn-success btn-block">
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    //TODO 完成表单2.0的验证逻辑
+    //TODO 1.用户名的验证
+    var username = document.getElementById("username");
+    var usernameTip = document.getElementById("usernameTip");
+    /*//TODO 显示默认的提示信息
+    getFocus(username,usernameTip,"请输入8至16位的英文或数字.");
+    //TODO 进行验证
+    formValidaty(username,usernameTip,"用户名");*/
+
+    formValidity(username,usernameTip,{
+        "default" : "请输入8至16位的英文或数字.",
+        "error" : "用户名"
+    });
+
+
+    //TODO 密码的验证
+    var password = document.getElementById("password");
+    var passwordTip = document.getElementById("passwordTip");
+    password.onfocus = function(){
+        passwordTip.className = "col-md-5 show control-default";
+        passwordTip.innerHTML = "请输入6至12位的数字.";
+    }
+    password.onblur = function(){
+        if(password.validity.valid){
+            passwordTip.className = "col-md-5 show control-success";
+            passwordTip.innerHTML = "密码输入正确.";
+        }else if(password.validity.valueMissing){
+            passwordTip.className = "col-md-5 show control-error";
+            passwordTip.innerHTML = "密码不能为空.";
+        }else if(password.validity.patternMismatch){
+            passwordTip.className = "col-md-5 show control-error";
+            passwordTip.innerHTML = "密码输入有误.";
+        }
+    }
+
+    /*//TODO 获取焦点的逻辑
+    function getFocus(elem,elemTip,text){
+        elem.onfocus = function(){
+            //TODO 删除 .hide,添加 .show
+            elemTip.className = "col-md-5 show control-default";
+            elemTip.innerHTML = text;
+        }
+    }*/
+
+
+    /*//TODO 表单验证的逻辑
+    function formValidaty(elem,elemTip,text){
+        elem.onblur = function(){
+            if(elem.validity.valid){
+                elemTip.className = "col-md-5 show control-success";
+                elemTip.innerHTML = text+"输入正确.";
+            }else if(elem.validity.valueMissing){
+                elemTip.className = "col-md-5 show control-error";
+                elemTip.innerHTML = text+
+"不能为空.";
+            }else if(elem.validity.patternMismatch){
+                elemTip.className = "col-md-5 show control-error";
+                elemTip.innerHTML = text+
+"输入有误.";
+            }
+        }
+    }*/
+
+    /*
+      TODO 封装一个函数 - 用于元素的获取焦点和失去焦点事件
+      TODO 形参
+      TODO * elem - 对应表单的组件元素(username)
+      TODO * elemTip - 对应表单的组件元素提示(usernameTip)
+      TODO * text - 对应的提示信息内容
+      TODO   {
+      TODO       "default" : "",
+      TODO       "error" : ""
+      TODO   }
+     */
+    function formValidity(elem,elemTip,text){
+        elem.onfocus = function(){
+            elemTip.className = "col-md-5 show control-default";
+            elemTip.innerHTML = text.default;;
+        }
+        elem.onblur = function(){
+            if(elem.validity.valid){
+                elemTip.className = "col-md-5 show control-success";
+                elemTip.innerHTML = text.error+"输入正确.";
+            }else if(elem.validity.valueMissing){
+                elemTip.className = "col-md-5 show control-error";
+                elemTip.innerHTML = text.error+"不能为空.";
+            }else if(elem.validity.patternMismatch){
+                elemTip.className = "col-md-5 show control-error";
+                elemTip.innerHTML = text.error+"输入有误.";
+            }
+        }
+    }
+</script>
+<div class="w">
+    <div id="footer-2013">
+        <div class="links">
+            <a rel="nofollow" target="_blank" href="javascript:return false;">
+                关于我们
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="javascript:return false;">
+                联系我们
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="javascript:return false;">
+                人才招聘
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="javascript:return false;">
+                商家入驻
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="javascript:return false;">
+                广告服务
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="javascript:return false;">
+                手机京东
+            </a>
+            |
+            <a target="_blank" href="javascript:return false;">
+                友情链接
+            </a>
+            |
+            <a target="_blank" href="javascript:return false;">
+                销售联盟
+            </a>
+            |
+            <a href="javascript:return false;" target="_blank">
+                京东社区
+            </a>
+            |
+            <a href="javascript:return false;" target="_blank">
+                京东公益
+            </a>
+            |
+            <a target="_blank" href="javascript:return false;" clstag="pageclick|keycount|20150112ABD|9">English Site</a>
+        </div>
+        <div class="copyright">
+            Copyright&nbsp;&#169;&nbsp;2004-2016&nbsp;&nbsp;京东JD.com&nbsp;版权所有
+        </div>
+    </div>
+</div>
+</body>
+</html>

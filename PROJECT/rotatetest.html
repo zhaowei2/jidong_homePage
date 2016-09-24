@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>转盘旋转的测试</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500" style="border: 1px solid black"></canvas>
+<button id="start">开始</button>
+<script>
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    var start = document.getElementById("start");
+
+    var imgPan = new Image();
+    imgPan.src = "imgs/pan.png";
+    var imgPin = new Image();
+    imgPin.src = "imgs/pin.png";
+
+    context.translate(canvas.width/2,canvas.height/2);
+
+    //TODO 绘制转盘的静态效果
+    var flag = 0;
+    imgPan.onload = function(){
+        flag += 50;
+        if(flag == 100){
+            paintImg();
+        }
+    }
+    imgPin.onload = function(){
+        flag += 50;
+        if(flag == 100){
+            paintImg();
+        }
+    }
+    function paintImg(){
+        //TODO 生成随机的旋转角度
+        var angle = Math.random()*360;
+        //TODO 旋转
+        context.rotate(Math.PI/180*angle);
+        context.drawImage(imgPan,-imgPan.width/2,-imgPan.height/2);
+
+        context.rotate(-Math.PI/180*angle);
+        context.drawImage(imgPin,-imgPin.width/2,-imgPin.height/2);
+    }
+
+    var angle = 0;//TODO 旋转角度
+    var duration = 10000;//TODO 旋转时长为 10 秒
+    var last = 0;//TODO 已旋转时长
+    var deg = 0;//TODO 旋转角度的差值
+
+    start.onclick = function(){
+        t = setInterval(function(){
+            last += 50;
+            if(last <= duration/2){
+                //TODO 前 5 秒,加速运动
+                deg += 0.1;
+                angle += deg;
+            }else if(last < duration){
+                //TODO 后 5 秒,减速运动
+                deg -= 0.1;
+                angle += deg;
+            }else if(last >= duration){
+                //TODO 停止旋转
+                clearInterval(t);
+            }
+
+            context.rotate(Math.PI/180*angle);
+            context.drawImage(imgPan,-imgPan.width/2,-imgPan.height/2);
+
+            context.rotate(-Math.PI/180*angle);
+            context.drawImage(imgPin,-imgPin.width/2,-imgPin.height/2);
+        },50)
+    }
+</script>
+</body>
+</html>
